@@ -39,3 +39,5 @@ To secure the Admin Dashboard (`/admin`), a secure PIN must be configured manual
    ADMIN_SECRET_PIN="create_your_own_password"
    PAYSTACK_SECRET_KEY="sk_test_..."
    PAYSTACK_PUBLIC_KEY="pk_test_..."
+
+   <table bordercolor="#66b2b2"> <tr> <td width="33.3%" style="align:center;" valign="top"> <a target="_blank" href="#">FarmMoni Investment</a> <br /> <a target="_blank" href="#"> <img src="https://www.google.com/search?q=https://via.placeholder.com/300x200%3Ftext%3DFarmMoni" width="100%" alt="FarmMoni"/> </a> </td> <td width="33.3%" valign="top"> <a target="_blank" href="#">Rigley 2: Flappy Bug</a> <br /> <a target="_blank" href="#"> <img src="https://www.google.com/search?q=https://via.placeholder.com/300x200%3Ftext%3DRigley%2BGame" width="100%" alt="Rigley 2"/> </a> </td> <td width="33.3%" valign="top"> <a target="_blank" href="#">Portfolio</a> <br /> <a target="_blank" href="#"> <img src="https://via.placeholder.com/300x200?text=Portfolio" width="100%" alt="Portfolio"/> </a> </td> </tr> </table>
