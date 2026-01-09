@@ -37,7 +37,7 @@ export default function Home() {
         {/* --- BACKGROUND LAYERS --- */}
         <div className="absolute inset-0 z-0 pointer-events-none">
             {/* 1. Pattern Image */}
-            <div className="absolute inset-0 opacity-90 mix-blend-soft-light">
+            <div className="absolute inset-0 opacity-98 mix-blend-soft-light">
               <Image 
                 src="/images/hero-pattern.png" 
                 alt="Pattern"
@@ -162,15 +162,19 @@ export default function Home() {
       {/* --- OUR STORY SECTION --- */}
       <section id="story" className="py-20 md:py-24 bg-[#F3F4F1]">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
             
-            {/* Image (Hidden on Mobile) */}
-            <div className="w-full lg:w-1/2 relative h-[500px] hidden lg:block">
+            {/* Image */}
+            <div className="w-full lg:w-1/2 relative h-[400px] lg:h-[500px]">
               <div className="absolute top-0 left-0 w-2/3 h-2/3 rounded-3xl overflow-hidden shadow-2xl z-10 border-4 border-white">
-                <Image src="/images/farm-story.jpg" alt="Farm" fill sizes="50vw" className="object-cover" />
+                <Image src="/images/farm-story.jpg" alt="Farm" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
               </div>
               <div className="absolute bottom-0 right-0 w-2/3 h-2/3 rounded-3xl overflow-hidden shadow-2xl z-20 border-4 border-white">
-                <Image src="/images/smoked-catfish.jpg" alt="Food" fill sizes="50vw" className="object-cover" />
+                <Image src="/images/smoked-catfish.jpg" alt="Food" fill sizes="(max-width: 768px) 50vw, 33vw" className="object-cover" />
+              </div>
+              {/* Badge */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 lg:w-32 lg:h-32 bg-orange-500 rounded-full flex items-center justify-center z-30 shadow-xl border-4 border-white">
+                 <span className="text-white font-bold text-center leading-tight text-sm lg:text-base">Since<br/><span className="text-xl lg:text-2xl">2020</span></span>
               </div>
             </div>
 

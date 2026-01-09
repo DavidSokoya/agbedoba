@@ -26,8 +26,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // VISIBILITY:
-  const isDark = isScrolled || pathname !== "/";
+  // 👇 FIXED LOGIC: 
+  // Navbar is "Dark" (Black text) if:
+  // 1. We scrolled down
+  // 2. OR We are NOT on the home page
+  // 3. OR The Mobile Menu is OPEN (Important!)
+  const isDark = isScrolled || pathname !== "/" || isMobileMenuOpen;
 
   return (
     <>
@@ -41,7 +45,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           
           {/* === IMAGE LOGO === */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
             <div className="relative h-10 w-40">
               <Image 
                 src="/images/logo.png" 
@@ -64,7 +68,7 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
-            <Link href="/cart" className="relative group p-3">
+            <Link href="/cart" className="relative group p-3" onClick={() => setIsMobileMenuOpen(false)}>
               <div className={`transition ${isDark ? 'text-gray-800' : 'text-white'}`}>
                 <ShoppingCart className="w-6 h-6" />
                 {cartCount > 0 && (
@@ -78,7 +82,8 @@ export default function Navbar() {
             {/* Mobile Menu Toggle */}
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`md:hidden p-3 ${isDark ? 'text-gray-800' : 'text-white'}`}
+              // The text color here will now be dark when menu is open because of `isDark`
+              className={`md:hidden p-3 transition-colors duration-200 ${isDark ? 'text-gray-800' : 'text-white'}`}
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
