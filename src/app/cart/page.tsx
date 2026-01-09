@@ -4,10 +4,10 @@ import Navbar from "@/components/Navbar";
 import { useCartStore } from "@/store/cartStore";
 import Image from "next/image";
 import Link from "next/link";
-import { Minus, Plus, Trash2, ArrowRight, ShoppingBag } from "lucide-react";
+// 👇 Added ArrowLeft here
+import { Minus, Plus, Trash2, ArrowRight, ShoppingBag, ArrowLeft } from "lucide-react";
 
 export default function CartPage() {
-  // 1. Get data and functions from the store
   const { items, addItem, decreaseItem, removeItem, totalPrice } = useCartStore();
 
   return (
@@ -15,6 +15,15 @@ export default function CartPage() {
       <Navbar />
 
       <div className="pt-32 pb-20 max-w-5xl mx-auto px-6">
+        
+        {/* 👇 NEW BACK BUTTON */}
+        <Link 
+          href="/#shop" 
+          className="inline-flex items-center gap-2 text-gray-500 hover:text-orange-500 transition mb-6 font-medium text-sm"
+        >
+          <ArrowLeft className="w-4 h-4" /> Continue Shopping
+        </Link>
+
         <h1 className="text-3xl font-bold text-green-950 mb-8">Your Basket</h1>
 
         {items.length === 0 ? (
@@ -36,7 +45,7 @@ export default function CartPage() {
           // --- CART CONTENT ---
           <div className="flex flex-col lg:flex-row gap-12">
             
-            {/* LEFT: Item List */}
+            {/* Item List */}
             <div className="flex-grow space-y-6">
               {items.map((item) => (
                 <div key={item.id} className="flex gap-6 items-center bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
@@ -93,7 +102,7 @@ export default function CartPage() {
               ))}
             </div>
 
-            {/* RIGHT: Summary Card */}
+            {/* Summary Card */}
             <div className="w-full lg:w-96 flex-shrink-0">
               <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-lg sticky top-32">
                 <h3 className="text-xl font-bold text-gray-900 mb-6">Order Summary</h3>
@@ -119,11 +128,13 @@ export default function CartPage() {
                 >
                   Proceed to Checkout
                 </Link>
+                
                  <p className="text-xs text-center text-gray-400 mt-4">
-                  Secure checkout powered by Paystack/Stripe
+                  Secure checkout powered by Paystack
                  </p>
               </div>
             </div>
+
           </div>
         )}
       </div>

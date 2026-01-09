@@ -7,21 +7,21 @@ import { ArrowLeft, CheckCircle2, Star, Truck, ShieldCheck } from "lucide-react"
 import { notFound } from "next/navigation";
 import ProductImageGallery from "@/components/ProductImageGallery";
 
-// 1. Tell Next.js which products to build statically
+// Tell Next.js which products to build statically
 export async function generateStaticParams() {
   return PRODUCTS.map((product) => ({
     id: product.id,
   }));
 }
 
-// 2. Updated Type Definition for Next.js 15
+// Updated Type Definition for Next.js 15
 type Props = {
   params: Promise<{ id: string }>;
 };
 
-// 3. Component is async and awaits params
+// Component is async and awaits params
 export default async function ProductPage({ params }: Props) {
-  // AWAIT THE PARAMS HERE
+  
   const { id } = await params;
   
   const product = PRODUCTS.find((p) => p.id === id);
@@ -35,7 +35,7 @@ export default async function ProductPage({ params }: Props) {
       <Navbar />
 
       <div className="pt-28 pb-16 max-w-7xl mx-auto px-6">
-        {/* Breadcrumb / Back Link */}
+        {/* Back Link */}
         <Link 
           href="/#shop" 
           className="inline-flex items-center gap-2 text-gray-500 hover:text-orange-500 transition mb-8 font-medium"
@@ -45,13 +45,13 @@ export default async function ProductPage({ params }: Props) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start">
           
-          {/* LEFT: Product Image Gallery (Client Component) */}
+          {/* Product Image Gallery */}
             <ProductImageGallery 
             images={product.gallery} 
             productName={product.name}
             tag={product.tag}
             />
-          {/* RIGHT: Product Details */}
+          {/* Product Details */}
           <div className="flex flex-col h-full animate-in slide-in-from-right-8 fade-in duration-500">
             
             {/* Header */}

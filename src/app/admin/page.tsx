@@ -7,7 +7,6 @@ import {
   ChevronRight, TrendingUp, AlertCircle 
 } from "lucide-react";
 
-// --- TYPES ---
 type Order = {
   id: string;
   customer: {
@@ -23,17 +22,16 @@ type Order = {
 };
 
 export default function AdminPage() {
-  // Auth State
+
   const [pin, setPin] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(false);
   
-  // Data State
+
   const [orders, setOrders] = useState<Order[]>([]);
   const [activeView, setActiveView] = useState<'overview' | 'orders' | 'customers'>('overview');
   const [searchTerm, setSearchTerm] = useState("");
 
-  // --- ACTIONS ---
 
   const fetchOrders = async (pinCode: string = pin) => {
     setLoading(true);
@@ -54,7 +52,7 @@ export default function AdminPage() {
   };
 
   const handleStatusUpdate = async (orderId: string, newStatus: string) => {
-    // Optimistic Update
+  
     setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: newStatus } : o));
     try {
       await fetch('/api/admin/orders', {
@@ -66,8 +64,6 @@ export default function AdminPage() {
       fetchOrders(); 
     }
   };
-
-  // --- COMPUTED DATA ---
 
   const stats = useMemo(() => {
     const totalRevenue = orders.reduce((sum, o) => sum + o.amount, 0);
@@ -325,7 +321,6 @@ export default function AdminPage() {
 }
 
 // --- SUB-COMPONENTS ---
-
 function SidebarItem({ active, icon, label, onClick, badge }: any) {
   return (
     <button 

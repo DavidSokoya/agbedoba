@@ -3,7 +3,7 @@ import { db } from '@/lib/firebaseAdmin';
 
 export async function POST(request: Request) {
   try {
-    const { reference } = await request.json(); // Reference is the Order ID
+    const { reference } = await request.json(); 
 
     // 1. Verify with Paystack
     const verifyRes = await fetch(`https://api.paystack.co/transaction/verify/${reference}`, {

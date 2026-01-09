@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/firebaseAdmin';
 
-// 1. GET: Fetch Orders (Existing)
+//  Fetch Orders 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -11,7 +11,7 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Fetch last 50 orders (Increased limit for better visibility)
+    // Fetch last 50 orders 
     const snapshot = await db.collection('orders')
       .orderBy('createdAt', 'desc')
       .limit(50)
@@ -30,7 +30,7 @@ export async function GET(request: Request) {
   }
 }
 
-// 2. PATCH: Update Order Status (NEW)
+// 2. Update Order Status 
 export async function PATCH(request: Request) {
   try {
     const body = await request.json();

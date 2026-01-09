@@ -3,9 +3,17 @@ import AddToCartBtn from "@/components/AddToCartBtn";
 import Navbar from "@/components/Navbar"; 
 import Image from "next/image";
 import Link from "next/link";
+// 👇 Import your refactored components
+import { 
+  ProcessCard, 
+  SocialPill, 
+  FooterSocial, 
+  TikTokIcon, 
+  TwitterXIcon 
+} from "@/components/ui";
+
 import { 
   ArrowRight, 
-  Youtube, 
   CheckCircle2, 
   MapPin, 
   Phone, 
@@ -14,38 +22,46 @@ import {
   Sprout, 
   Flame, 
   Truck, 
-  Fish 
+  Fish,
+  Youtube 
 } from "lucide-react";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#FDFBF7] text-gray-900 selection:bg-orange-100 selection:text-orange-900 font-sans">
+    <main className="min-h-screen bg-[#FDFBF7] text-gray-900 font-sans selection:bg-orange-100 selection:text-orange-900">
       <Navbar />
 
       {/* --- HERO SECTION --- */}
-      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-green-900">
+      <section className="relative min-h-[85vh] flex items-center pt-24 pb-12 overflow-hidden bg-green-950">
         
-        {/* Background Pattern */}
-        <div className="absolute inset-0 z-0 opacity-20">
-            <Image 
-              src="/images/hero-pattern.png" 
-              alt="Pattern"
-              fill
-              className="object-cover"
-              priority
-            />
+        {/* --- BACKGROUND LAYERS --- */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+            {/* 1. Pattern Image */}
+            <div className="absolute inset-0 opacity-90 mix-blend-soft-light">
+              <Image 
+                src="/images/hero-pattern.png" 
+                alt="Pattern"
+                fill
+                sizes="100vw"
+                className="object-cover" 
+                priority
+              />
+            </div>
+            {/* 2. Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-green-950/80 via-green-900/80 to-green-950"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           
-          {/* LEFT: Text Content */}
-          <div className="animate-in slide-in-from-left-10 fade-in duration-700 order-2 md:order-1 pb-10 md:pb-0">
-            <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 rounded-full px-4 py-1 text-orange-400 text-sm font-bold mb-6">
+          {/* LEFT: Content */}
+          <div className="text-center md:text-left pt-8 md:pt-0 animate-in slide-in-from-bottom-10 fade-in duration-700">
+            
+            <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 backdrop-blur-md rounded-full px-4 py-1.5 text-orange-400 text-xs font-bold mb-8">
               <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"/>
-              Fast Delivery in Lagos
+              #1 Organic Farm in Lagos
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-6">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tighter leading-[1.05] mb-6">
               Taste the <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-200">
                 Agbedoba
@@ -53,98 +69,90 @@ export default function Home() {
               Difference.
             </h1>
             
-            <p className="text-lg md:text-xl text-green-100 mb-8 leading-relaxed max-w-lg">
+            <p className="text-base sm:text-lg text-gray-300 mb-10 leading-relaxed max-w-lg mx-auto md:mx-0">
               Premium Catfish & Ram farming. From our ponds and pastures directly to your grill. Experience the freshest meat in town.
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              {/* Primary CTA */}
-              <Link href="/#shop" className="bg-orange-500 text-white px-8 py-4 rounded-full font-bold hover:bg-orange-600 transition shadow-lg shadow-orange-500/30 flex items-center gap-2 transform hover:-translate-y-1">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <Link href="/#shop" className="bg-orange-500 text-white px-8 py-4 rounded-full font-bold hover:bg-orange-600 transition shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2 transform active:scale-95">
                 Order Now <ArrowRight className="w-4 h-4" />
               </Link>
 
-              {/* Creative Secondary CTA */}
-              <Link href="/#process" className="group relative px-8 py-4 rounded-full font-semibold text-white overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] border border-white/30 bg-white/10 backdrop-blur-sm">
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-green-500/0 via-green-500/10 to-green-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
-                <div className="flex items-center gap-3 relative z-10">
-                   <Sprout className="w-5 h-5 text-green-300 group-hover:text-white group-hover:-translate-y-1 transition-transform duration-300" />
-                   <span>How We Farm</span>
-                </div>
+              <Link href="/#process" className="px-8 py-4 rounded-full font-bold text-white border border-white/20 hover:bg-white/10 transition flex items-center justify-center gap-2">
+                 <Sprout className="w-4 h-4 text-green-400" /> How We Farm
               </Link>
             </div>
           </div>
 
           {/* RIGHT: Hero Image */}
-          <div className="relative h-[400px] md:h-[600px] w-full order-1 md:order-2 animate-in slide-in-from-right-10 fade-in duration-1000">
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-green-500/20 blur-3xl rounded-full" />
-             <Image 
-               src="/images/hero.png" 
-               alt="Delicious Grilled Catfish"
-               fill
-               className="object-contain drop-shadow-2xl hover:scale-105 transition duration-700"
-               priority
-             />
+          <div className="relative h-[400px] lg:h-[500px] w-full hidden md:flex items-center justify-center animate-in slide-in-from-right-10 fade-in duration-1000">
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-green-500/30 blur-[60px] rounded-full" />
+             <div className="relative w-full h-full">
+               <Image 
+                 src="/images/hero.png" 
+                 alt="Delicious Grilled Catfish"
+                 fill
+                 sizes="(max-width: 768px) 100vw, 50vw"
+                 className="object-contain drop-shadow-2xl hover:scale-105 transition duration-700"
+                 priority
+               />
+             </div>
           </div>
         </div>
       </section>
 
       {/* --- TRUST BADGES --- */}
-      <section className="border-b border-gray-200 bg-white relative z-20 -mt-8 rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.05)] mx-2 md:mx-0">
-        <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-            {['100% Organic Feed', 'Same Day Delivery', 'Halal Certified', 'Hygenic Processing'].map((feature, i) => (
-                <div key={i} className="flex items-center gap-3 text-gray-700 font-bold text-sm md:text-base">
-                    <div className="p-2 bg-green-100 rounded-full text-green-700">
-                      <CheckCircle2 className="w-5 h-5" />
-                    </div>
-                    {feature}
-                </div>
-            ))}
+      <section className="bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 py-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4">
+              {['100% Organic', 'Fast Delivery', 'Halal Certified', 'Hygenic Process'].map((feature, i) => (
+                  <div key={i} className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-3">
+                      <div className="p-2.5 bg-green-50 rounded-full text-green-700 mb-2 md:mb-0">
+                        <CheckCircle2 className="w-5 h-5" />
+                      </div>
+                      <span className="text-gray-800 font-bold text-sm md:text-base">{feature}</span>
+                  </div>
+              ))}
+            </div>
         </div>
       </section>
 
       {/* --- PROCESS SECTION --- */}
-      <section id="process" className="py-24 bg-white overflow-hidden scroll-mt-20">
+      <section id="process" className="py-20 md:py-24 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 max-w-2xl mx-auto">
-            <span className="text-orange-500 font-bold uppercase tracking-wider text-sm">How We Do It</span>
-            <h2 className="text-3xl md:text-5xl font-bold text-green-950 mt-2">The Agbedoba Standard</h2>
-            <p className="text-gray-500 mt-4">We control the entire value chain to ensure you get the safest, tastiest protein.</p>
+            <span className="text-orange-500 font-bold uppercase tracking-wider text-xs md:text-sm">How We Do It</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-green-950 mt-3">The Agbedoba Standard</h2>
+            <p className="text-gray-500 mt-4 text-sm md:text-base">We control the entire value chain to ensure you get the safest, tastiest protein.</p>
           </div>
 
-          <div className="relative grid grid-cols-1 md:grid-cols-4 gap-8">
-            {/* Connecting Line (Desktop Only) */}
-            <div className="hidden md:block absolute top-12 left-0 w-full h-1 bg-gradient-to-r from-green-100 via-orange-100 to-green-100 -z-10" />
-
-            {/* Step 1 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <ProcessCard 
               number="01"
               icon={<Sprout className="w-6 h-6 text-white" />}
               title="Organic Breeding"
-              desc="Our catfish and rams are raised on 100% organic feed in clean, spacious environments."
+              desc="Raised on 100% organic feed in clean environments."
               color="bg-green-600"
             />
-            {/* Step 2 */}
             <ProcessCard 
               number="02"
               icon={<Fish className="w-6 h-6 text-white" />}
               title="Hygenic Harvest"
-              desc="We harvest live from the pond and process immediately to lock in freshness."
+              desc="Harvested live and processed immediately for freshness."
               color="bg-green-700"
             />
-            {/* Step 3 */}
             <ProcessCard 
               number="03"
               icon={<Flame className="w-6 h-6 text-white" />}
               title="Smoked & Spiced"
-              desc="Seasoned with our secret family recipe and wood-smoked or grilled to perfection."
+              desc="Seasoned with secret recipes and wood-smoked to perfection."
               color="bg-orange-500"
             />
-             {/* Step 4 */}
             <ProcessCard 
               number="04"
               icon={<Truck className="w-6 h-6 text-white" />}
               title="Swift Delivery"
-              desc="Packed securely and delivered hot (or dried) to your doorstep in Lagos."
+              desc="Packed securely and delivered hot to your doorstep."
               color="bg-green-800"
             />
           </div>
@@ -152,51 +160,45 @@ export default function Home() {
       </section>
 
       {/* --- OUR STORY SECTION --- */}
-      <section id="story" className="py-24 bg-[#F3F4F1]">
+      <section id="story" className="py-20 md:py-24 bg-[#F3F4F1]">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row gap-16 items-center">
+          <div className="flex flex-col lg:flex-row gap-16 items-center">
             
-            {/* Image Collage Layout */}
-            <div className="w-full md:w-1/2 relative h-[600px] hidden md:block">
+            {/* Image (Hidden on Mobile) */}
+            <div className="w-full lg:w-1/2 relative h-[500px] hidden lg:block">
               <div className="absolute top-0 left-0 w-2/3 h-2/3 rounded-3xl overflow-hidden shadow-2xl z-10 border-4 border-white">
-                <Image src="/images/farm-story.jpg" alt="Farm" fill className="object-cover" />
+                <Image src="/images/farm-story.jpg" alt="Farm" fill sizes="50vw" className="object-cover" />
               </div>
               <div className="absolute bottom-0 right-0 w-2/3 h-2/3 rounded-3xl overflow-hidden shadow-2xl z-20 border-4 border-white">
-                <Image src="/images/smoked-catfish.jpg" alt="Food" fill className="object-cover" />
-              </div>
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-orange-500 rounded-full flex items-center justify-center z-30 shadow-xl border-4 border-white">
-                 <span className="text-white font-bold text-center leading-tight">Since<br/><span className="text-2xl">2020</span></span>
+                <Image src="/images/smoked-catfish.jpg" alt="Food" fill sizes="50vw" className="object-cover" />
               </div>
             </div>
 
             {/* Text Content */}
-            <div className="w-full md:w-1/2">
+            <div className="w-full lg:w-1/2">
               <span className="text-orange-600 font-bold uppercase tracking-wider text-sm flex items-center gap-2">
                 <span className="w-8 h-[2px] bg-orange-600"></span> Our Story
               </span>
-              <h2 className="text-4xl md:text-6xl font-bold text-green-950 mt-4 mb-8 leading-tight">
+              <h2 className="text-3xl md:text-5xl font-bold text-green-950 mt-4 mb-6 leading-tight">
                 Rooted in <br/> <span className="italic text-green-700 font-serif">Tradition.</span>
               </h2>
               
-              <div className="space-y-6 text-lg text-gray-600 font-light leading-relaxed">
+              <div className="space-y-6 text-base md:text-lg text-gray-600 font-light leading-relaxed">
                 <p>
                   Agbedoba Farms wasn't built in a boardroom. It started on a small piece of land with a simple belief: 
                   <strong className="text-green-900 font-medium"> Nigerians deserve better food.</strong>
                 </p>
-                <p>
-                  We saw a market flooded with chemically-preserved fish and poorly fed livestock. We decided to go the hard way—organic feed, clean water, and patience.
-                </p>
-                <div className="pl-6 border-l-4 border-orange-200">
-                  <p className="italic text-gray-500">
+                <div className="pl-6 border-l-4 border-orange-200 bg-white/50 p-4 rounded-r-xl">
+                  <p className="italic text-gray-500 text-sm md:text-base">
                     "Food is medicine. When you eat Agbedoba, you aren't just eating BBQ; you are eating pure, unadulterated health."
                   </p>
                 </div>
               </div>
 
-              <div className="mt-10 flex gap-6">
-                <SocialPill href="https://www.instagram.com/agbedobafarms" icon={<Instagram size={20}/>} label="Instagram" />
-                <SocialPill href="https://www.tiktok.com/@agbedobafarms" icon={<TikTokIcon />} label="TikTok" />
-                <SocialPill href="https://x.com/agbedobafarms" icon={<TwitterXIcon />} label="Twitter" />
+              <div className="mt-8 flex flex-wrap gap-4">
+                <SocialPill href="https://instagram.com" icon={<Instagram size={18}/>} label="Instagram" />
+                <SocialPill href="https://tiktok.com" icon={<TikTokIcon size={18} />} label="TikTok" />
+                <SocialPill href="https://twitter.com" icon={<TwitterXIcon size={18} />} label="Twitter" />
               </div>
             </div>
           </div>
@@ -204,20 +206,16 @@ export default function Home() {
       </section>
 
       {/* --- SHOP SECTION --- */}
-      <section id="shop" className="py-24 bg-white scroll-mt-20">
+      <section id="shop" className="py-20 md:py-24 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
-            <div>
-              <span className="text-orange-500 font-bold uppercase tracking-wider text-sm">Online Store</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-green-950 mt-2">Farm Favorites</h2>
-            </div>
+          <div className="mb-10 text-center md:text-left">
+            <span className="text-orange-500 font-bold uppercase tracking-wider text-xs md:text-sm">Online Store</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-green-950 mt-2">Farm Favorites</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {PRODUCTS.map((product) => (
               <div key={product.id} className="group bg-gray-50 rounded-3xl p-4 transition duration-300 hover:shadow-xl hover:shadow-gray-200 flex flex-col">
-                
-                {/* Product Image - Clickable */}
                 <Link href={`/products/${product.id}`} className="relative h-64 w-full rounded-2xl overflow-hidden bg-white mb-6 block cursor-pointer">
                   <div className="absolute top-3 left-3 z-10 bg-orange-500 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide">
                     {product.tag}
@@ -226,11 +224,10 @@ export default function Home() {
                       src={product.image}
                       alt={product.name}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover group-hover:scale-105 transition duration-500"
                   />
                 </Link>
-
-                {/* Info */}
                 <div className="px-2 pb-2 flex flex-col flex-grow">
                   <Link href={`/products/${product.id}`}>
                     <h3 className="text-xl font-bold text-gray-900 mb-2 hover:text-orange-500 transition">{product.name}</h3>
@@ -238,8 +235,7 @@ export default function Home() {
                   <p className="text-gray-500 text-sm mb-4 line-clamp-2 flex-grow">
                       {product.description}
                   </p>
-                  
-                  <div className="flex items-center justify-between mt-auto">
+                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-200">
                     <span className="text-xl font-bold text-green-700">
                       ₦{(product.price / 100).toLocaleString()}
                     </span>
@@ -253,42 +249,32 @@ export default function Home() {
       </section>
 
       {/* --- FOOTER --- */}
-      <footer id="contact" className="bg-green-950 text-white py-20 border-t-4 border-orange-500">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-          
-          {/* Brand Info */}
+      <footer id="contact" className="bg-green-950 text-white py-12 md:py-20 border-t-4 border-orange-500">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
           <div className="md:col-span-1">
-            <h3 className="text-3xl font-bold mb-6 tracking-tight">Agbedoba<span className="text-orange-500">.</span></h3>
+            <h3 className="text-3xl font-bold mb-4 tracking-tight">Agbedoba<span className="text-orange-500">.</span></h3>
             <p className="text-green-200/80 mb-6 leading-relaxed text-sm">
-              We are dedicated to sustainable farming practices and providing the highest quality protein to Nigerian families.
+              Sustainable farming. Premium protein. Directly to your family.
             </p>
-            {/* Socials Grid */}
-            <div className="flex gap-4">
-               <FooterSocial href="https://www.instagram.com/agbedobafarms" icon={<Instagram size={18} />} />
-               <FooterSocial href="https://www.tiktok.com/@agbedobafarms" icon={<TikTokIcon size={18} />} />
-               <FooterSocial href="https://x.com/agbedobafarms" icon={<TwitterXIcon size={18} />} />
-               <FooterSocial href="https://www.youtube.com/@agbedobafarms" icon={<Youtube size={18} />} />
+            <div className="flex gap-4 justify-center md:justify-start">
+               <FooterSocial href="#" icon={<Instagram size={18} />} />
+               <FooterSocial href="#" icon={<TikTokIcon size={18} />} />
+               <FooterSocial href="#" icon={<TwitterXIcon size={18} />} />
+               <FooterSocial href="#" icon={<Youtube size={18} />} />
             </div>
           </div>
-
-          {/* Spacer */}
           <div className="hidden md:block"></div>
-
-          {/* Quick Links */}
           <div>
             <h4 className="font-bold text-lg mb-6 text-orange-500">Explore</h4>
             <ul className="space-y-4 text-green-100/70 text-sm">
               <li><Link href="/#story" className="hover:text-white transition">Our Story</Link></li>
               <li><Link href="/#shop" className="hover:text-white transition">Shop Now</Link></li>
               <li><Link href="/cart" className="hover:text-white transition">View Cart</Link></li>
-              <li><Link href="/#contact" className="hover:text-white transition">Contact</Link></li>
             </ul>
           </div>
-
-          {/* Contact Details */}
           <div>
             <h4 className="font-bold text-lg mb-6 text-orange-500">Contact</h4>
-            <ul className="space-y-4 text-green-100/70 text-sm">
+            <ul className="space-y-4 text-green-100/70 text-sm flex flex-col items-center md:items-start">
               <li className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-white" />
                 <span>Lagos, Nigeria</span>
@@ -304,59 +290,10 @@ export default function Home() {
             </ul>
           </div>
         </div>
-        
-        <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-green-900 text-center text-green-400 text-sm">
+        <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-green-900 text-center text-green-400 text-sm">
           © {new Date().getFullYear()} Agbedoba Farms. All rights reserved.
         </div>
       </footer>
-
     </main>
   );
 }
-
-// --- SUB COMPONENTS ---
-
-function ProcessCard({ number, icon, title, desc, color }: { number: string, icon: any, title: string, desc: string, color: string }) {
-  return (
-    <div className="relative group p-8 bg-white border border-gray-100 rounded-3xl hover:border-orange-100 hover:shadow-xl hover:shadow-orange-500/5 transition duration-300">
-      <div className={`w-14 h-14 ${color} rounded-2xl flex items-center justify-center mb-6 shadow-lg rotate-3 group-hover:rotate-6 transition`}>
-        {icon}
-      </div>
-      <h3 className="text-4xl font-bold text-gray-100 absolute top-4 right-6 select-none">{number}</h3>
-      <h4 className="text-xl font-bold text-gray-900 mb-3 relative z-10">{title}</h4>
-      <p className="text-sm text-gray-500 leading-relaxed relative z-10">
-        {desc}
-      </p>
-    </div>
-  )
-}
-
-function SocialPill({ href, icon, label }: { href: string, icon: any, label: string }) {
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-full text-sm font-semibold text-gray-700 hover:bg-green-50 hover:text-green-700 hover:border-green-200 transition">
-      {icon}
-      {label}
-    </a>
-  )
-}
-
-function FooterSocial({ href, icon }: { href: string, icon: any }) {
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-green-900 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white transition text-white">
-      {icon}
-    </a>
-  )
-}
-
-// Custom SVGs
-const TikTokIcon = ({ size = 20 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"/>
-  </svg>
-);
-
-const TwitterXIcon = ({ size = 20 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
-  </svg>
-);

@@ -25,13 +25,12 @@ export default function CheckoutPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // 👇 THIS IS THE CRITICAL UPDATE
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // 1. Send order details to our API
+      // Send order details to API
       const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -44,7 +43,7 @@ export default function CheckoutPage() {
       const result = await response.json();
 
       if (result.success && result.checkoutUrl) {
-        // 2. REDIRECT TO PAYSTACK
+        // REDIRECT TO PAYSTACK
         console.log("Redirecting to Paystack:", result.checkoutUrl);
         window.location.href = result.checkoutUrl;
       } else {

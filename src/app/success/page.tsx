@@ -11,7 +11,7 @@ function SuccessContent() {
   const orderId = searchParams.get("orderId");
   const clearCart = useCartStore((state) => state.clearCart);
 
-  // Clear the cart when this page loads
+ 
   useEffect(() => {
     clearCart();
   }, [clearCart]);

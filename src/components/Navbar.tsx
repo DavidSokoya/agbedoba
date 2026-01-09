@@ -47,6 +47,7 @@ export default function Navbar() {
                 src="/images/logo.png" 
                 alt="Agbedoba Farms" 
                 fill
+                sizes="(max-width: 768px) 100px, 160px"
                 // Invert logo colors if the background is white (isDark is true)
                 className={`object-contain object-left transition ${isDark ? 'invert' : ''}`} 
                 priority

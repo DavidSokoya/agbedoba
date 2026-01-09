@@ -8,10 +8,8 @@ function VerifyContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
-  // Paystack sends the reference in the URL query string: ?reference=...
-  // NOTE: In our setup, we used the OrderID as the reference, but Paystack might append their own 'trxref'.
-  // However, Paystack ALWAYS sends back 'reference' which matches what we sent (our Order ID).
-  const reference = searchParams.get('reference'); // This is our Order ID
+  
+  const reference = searchParams.get('reference'); 
 
   useEffect(() => {
     if (!reference) return;
