@@ -20,7 +20,7 @@ export default function AddToCartBtn({ product }: { product: Product }) {
     <button 
       onClick={handleAdd}
       className={`
-        flex items-center gap-2 px-2 py-2 rounded-full text-sm font-bold transition-all duration-200
+        flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold transition-all duration-200
         ${isAdded 
           ? "bg-green-700 text-white scale-105" 
           : "bg-orange-500 text-white hover:bg-orange-600 active:scale-95"
